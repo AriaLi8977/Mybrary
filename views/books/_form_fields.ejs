@@ -1,0 +1,35 @@
+<!-- _ means this is a partial file, not an actual file that is being rendered from the server -->
+<div>
+    <label>Title</label>
+    <input type="text" name="title" value="<%= book.title %>">
+</div>
+<div>
+<label>Author</label>
+    <select name="author">
+        <% authors.forEach(author =>{%>
+        <% if(author.id === book.author) {%>
+            <option selected label= "<%= author.name %>" value="<%= author.id %>"></option>
+        <%}else{%>
+                <option label= "<%= author.name %>" value="<%= author.id %>"></option>
+        <% }}) %>
+    </select>
+</div>
+<div>
+    <label>Publish Date</label>
+    <input type="date" name="publishDate" 
+        value="<%= book.publishDate == null ? '':
+        book.publishDate.toISOString().split('T')[0] %>"> 
+    <!-- 2025-01-01T12:50 -->
+</div>
+<div>
+    <label>Page Count</label>
+    <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>">
+</div>
+<div>
+    <label>Cover</label> //this will be a file input for uploading file
+    <input type="file" name="cover">
+</div>
+<div>
+    <label>Description</label>
+    <textarea name="description"><%= book.description %></textarea>
+</div>
