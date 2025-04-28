@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const path = require('path')
 const coverImageBasePath = 'uploads/bookCovers'
 
 //schema is a table for sql db
@@ -35,11 +35,13 @@ const bookSchema = new mongoose.Schema({
     }
 })
 
-// bookSchema.virtual('coverImageName').get(function(){
-//     if(this.coverImageName != null){
-//         return path.join('/',coverImageBasePath,this.coverImageName)
-//     }
-// })
+
+//virtual path derive val from the schema above，this calculated val won't be saved in mongo db
+bookSchema.virtual('coverImagePath').get(function(){ //we use normal func so that we can use this.
+    if(this.coverImageName != null){
+        return path.join('/',coverImageBasePath,this.coverImageName)
+    }
+})
 
 
 module.exports = mongoose.model('Book',bookSchema)
