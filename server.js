@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
@@ -15,6 +16,7 @@ app.set('view engine','ejs') //set our view engine
 app.set('views',__dirname + '/views') //set where our view is coming from
 app.set('layout', 'layouts/layout') //all the header and footer will be saved in layout to avoid duplication
 app.use(expressLayouts)
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({limit:'50mb', extended:false}))
 app.use(express.urlencoded({extended:true}));

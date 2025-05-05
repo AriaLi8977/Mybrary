@@ -8,4 +8,9 @@
 
 <% authors.forEach(author => { %>
     <div><%= author.name %></div>
+    <a href="/authors/<%= author.id  %>">View</a>
+    <a href="/authors/<%= author.id %>/edit">Edit</a>
+    <!-- but don't use a link for deleting -->
+    <!-- bcs search engine like google will click on all the links and delete everything-->
+    <%- include('../partials/deleteForm',{url: `/authors/${author.id}`}) %>
 <% }) %>

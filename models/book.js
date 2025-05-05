@@ -38,7 +38,6 @@ const bookSchema = new mongoose.Schema({
     }
 })
 
-
 //virtual path derive val from the schema above，this calculated val won't be saved in mongo db
 bookSchema.virtual('coverImagePath').get(function(){ //we use normal func so that we can use this.
     if(this.coverImage != null && this.coverImageType != null){
