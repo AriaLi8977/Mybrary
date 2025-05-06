@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const coverImageBasePath = 'uploads/bookCovers'
+const Author = require('./author')
 
 //schema is a table for sql db
 const bookSchema = new mongoose.Schema({
@@ -33,7 +34,7 @@ const bookSchema = new mongoose.Schema({
     },
     author:{ //refer to the author schema
         type:mongoose.Schema.Types.ObjectId,
-        require:true,
+        required:true,
         ref:'Author'
     }
 })
