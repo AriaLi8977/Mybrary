@@ -7,6 +7,7 @@ const app = express()
 const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const path = require('path')
 
 const indexRouter = require('./routes/index')
 const authorRouter = require('./routes/authors')
@@ -14,13 +15,15 @@ const bookRouter = require('./routes/books')
 
 app.set('view engine','ejs') //set our view engine
 app.set('views',__dirname + '/views') //set where our view is coming from
+app.set('public',__dirname + '/public') //set public folder
 app.set('layout', 'layouts/layout') //all the header and footer will be saved in layout to avoid duplication
 app.use(expressLayouts)
 app.use(methodOverride('_method'))
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({limit:'50mb', extended:false}))
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser:true})

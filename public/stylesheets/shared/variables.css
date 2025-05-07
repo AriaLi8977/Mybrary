@@ -1,0 +1,12 @@
+:root{
+    /* 200 is blueish, 300 purpleish, 100 greenish */
+    --color-base-hue: 200; 
+    /* hue range: 0-360, and we want danger color to be the exact opposite */
+    --color-danger-hue-offset: 180;
+    --color-danger-hue: calc(var(--color-base-hue) - var(--color-danger-hue-offset));
+    --color-background-dark: hsl(var(--color-base-hue), 100%, 8%);
+    --color-background-light: hsl(var(--color-base-hue), 100%, 16%);
+    --color-text-light: hsl(var(--color-base-hue), 100%, 87%);
+    --color-test: rgb(414,29,2);
+    --color-test2: hsl(200,100%,87%);
+}
